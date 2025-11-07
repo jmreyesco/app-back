@@ -7,7 +7,7 @@ import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 export class ProgramsController {
   constructor(private readonly service: ProgramsService) {}
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() dto: CreateProgramDto) { return this.service.create(dto); }
 

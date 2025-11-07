@@ -71,3 +71,66 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+# Arquiteture
+
+backend/app-back/
+├── src/
+│   ├── auth/                  # Módulo de autenticación
+│   │   ├── dto/              # Data Transfer Objects
+│   │   ├── guards/           # Guards JWT
+│   │   └── ...
+│   ├── programs/             # Módulo de programas
+│   │   ├── dto/
+│   │   ├── schemas/
+│   │   └── ...
+│   ├── users/                # Módulo de usuarios
+│   │   ├── dto/
+│   │   ├── schemas/
+│   │   └── ...
+│   ├── app.module.ts         # Módulo principal
+│   └── main.ts               # Punto de entrada
+
+# User
+
+POST {{BASE_URL}}/users
+Content-Type: application/json
+
+{
+    "fullName": "Admin",
+    "email": "admin@test.com"
+}
+
+# Login
+
+POST {{BASE_URL}}/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@test.com",
+    "password": "nopass"
+}
+
+# Programs
+
+POST {{BASE_URL}}/programs
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "name": "Curso JavaScript",
+    "description": "Curso básico de JS",
+    "startDate": "2024-01-01",
+    "status": "draft"
+}
+
+# Programs List
+
+GET {{BASE_URL}}/programs
+Authorization: Bearer {{token}}
+
+# Get programs
+
+GET {{BASE_URL}}/programs/{{programId}}
+Authorization: Bearer {{token}}
+
