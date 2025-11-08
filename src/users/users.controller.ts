@@ -11,7 +11,7 @@ export class UsersController {
   @Post()
   create(@Body() dto: CreateUserDto) { return this.service.create(dto); }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Query('programId') programId?: string, @Query('page') page = '1', @Query('limit') limit = '20') {
     return this.service.findAllByProgram(programId, Number(page), Number(limit));
